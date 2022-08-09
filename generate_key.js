@@ -1,8 +1,8 @@
-const { Crypto } = require('web-crypto')
+
+const crypto = require('crypto')
 let fs = require('fs')
 
-const crypto = new Crypto()
-var g_crypto = crypto.subtle; //webcrypto.crypto.subtle
+var g_crypto = crypto.webcrypto.subtle; //webcrypto.crypto.subtle
 
 async function do_key_gen() {
     let key = await g_crypto.generateKey(
@@ -26,8 +26,8 @@ async function do_key_gen() {
 
     let priv_jwk_str = JSON.stringify(priv_jwk)
     let public_jwk_str = JSON.stringify(public_jwk)
-    fs.writeFileSync("./local/audio_keys_jwk_nr.json",priv_jwk_str)
-    fs.writeFileSync("./local/audio_keys_public_jwk_str.json",public_jwk_str)
+    fs.writeFileSync("./local/_keys_jwk_nr.json",priv_jwk_str)
+    fs.writeFileSync("./local/_keys_public_jwk.json",public_jwk_str)
 
 }
 
